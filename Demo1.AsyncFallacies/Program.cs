@@ -10,6 +10,7 @@ namespace Demo1.AsyncFallacies
         {
             try
             {
+                // Main method is not allowed to be async
                 MainAsync().Wait();
             }
             catch (Exception e)
@@ -28,6 +29,8 @@ namespace Demo1.AsyncFallacies
         {
             Console.WriteLine("Prologue of async op, thread id: " + Thread.CurrentThread.ManagedThreadId);
             await Task.Delay(100);
+            ////this allows us to continue on the same thread
+            //await Task.FromResult(1);
             Console.WriteLine("Continuation of async op, thread id: " + Thread.CurrentThread.ManagedThreadId);
         }
     }
