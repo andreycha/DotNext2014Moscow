@@ -10,6 +10,7 @@ namespace Demo2.AsyncVoid
         {
             try
             {
+                // Main method is not allowed to be async
                 MainAsync().Wait();
             }
             catch (Exception e)
@@ -31,10 +32,8 @@ namespace Demo2.AsyncVoid
             }
             Console.WriteLine("Finished");
 
-            #region
             // waiting for exception to be thrown
-            //await Task.Delay(1000);
-            #endregion
+            await Task.Delay(1000);
         }
 
         private async static void DelayAndThrowAsync()
