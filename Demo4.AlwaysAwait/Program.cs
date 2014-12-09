@@ -10,6 +10,7 @@ namespace Demo4.AlwaysAwait
         {
             try
             {
+                // Main method is not allowed to be async
                 MainAsync().Wait();
             }
             catch (Exception e)
