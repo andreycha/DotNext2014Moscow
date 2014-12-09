@@ -17,7 +17,7 @@ namespace Demo1.AsyncFallaciesPart2
             int before = Thread.CurrentThread.ManagedThreadId;
 
             await Task.Delay(100);
-
+            // continuing on the same thread because captured UI context is single-threaded
             int after = Thread.CurrentThread.ManagedThreadId;
         }
     }
