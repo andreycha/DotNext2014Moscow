@@ -10,6 +10,7 @@ namespace Demo3.AsyncLambda
         {
             try
             {
+                // Main method is not allowed to be async
                 MainAsync().Wait();
             }
             catch (Exception e)
@@ -23,7 +24,8 @@ namespace Demo3.AsyncLambda
             Console.WriteLine("Started");
             try
             {
-                Foo(() => { throw new NotImplementedException(); });
+                // by making this lambda async we will get unhandled exception
+                ExecuteAction(() => { throw new NotImplementedException(); });
             }
             catch (Exception e)
             {
@@ -31,11 +33,12 @@ namespace Demo3.AsyncLambda
             }
             Console.WriteLine("Finished");
 
+            // waiting for exception to be thrown
             await Task.Delay(1000);
         }
 
         #region
-        private static void Foo(Action action)
+        private static void ExecuteAction(Action action)
         {
             action();
         }
